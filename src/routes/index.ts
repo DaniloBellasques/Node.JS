@@ -3,8 +3,19 @@ import{Router, Request, Response, RequestHandler} from 'express'
 const router = Router()
 
 router.get('/', (req: Request,res: Response) =>{
-    res.send("Aqui é a página de home")
+    let user ={
+        nome: 'Danilo',
+        idade: 20
+    } 
+
+    res.render('home', {
+        user:
+    })
+    
+    
 })
+
+
 
 //Quando usamos middleware, colocamos next
 const interferir:RequestHandler = (req,res,next)=>{
@@ -16,13 +27,13 @@ const interferir:RequestHandler = (req,res,next)=>{
     }
 }
 
-router.get('/contato', interferir, (req: Request,res: Response) =>{
-    console.log("EXECUTOU A PAG DE CONTATOS")
-    res.send("Aqui é a página de contato")
+router.get('/contato',/*, interferir, */(req: Request,res: Response) =>{
+    //console.log("EXECUTOU A PAG DE CONTATOS")
+    res.render('contato')
 })
 
 router.get('/sobre', (req: Request,res: Response) =>{
-    res.send("Aqui é a página de sobre")
+    res.render('sobre')
 })
 
 //ROTA DINÂMICA

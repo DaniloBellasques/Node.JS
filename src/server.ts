@@ -5,7 +5,18 @@ import path from 'path'
 
 import mainRoutes from './routes/index'
 
+//importando template engine (para usar HTML)
+import mustache from 'mustache-express'
+
 const server = express()
+
+//configurando mustache
+
+server.set('view engine', 'mustache')
+
+//configurando o caminho da pasta views
+server.set('views', path.join(__dirname, 'views'))
+server.engine('mustache', mustache())
 
 //configuração pasta public
 server.use(express.static(path.join(__dirname,'../public')))
