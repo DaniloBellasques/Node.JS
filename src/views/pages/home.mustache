@@ -1,0 +1,43 @@
+<title>Aqui é meu site</title>
+{{>partials/header}}
+
+<body>
+
+<section>
+    <p>Aqui é o conteudo do site</p>
+    
+    {{#aparecerMensagem}}
+    <p>Opa, {{nome}} {{sobreNome}} seja bem vindo!</p>
+    {{/aparecerMensagem}}
+
+    {{#mostrarIdade}}
+    <p>Olá você tem {{idade}} anos</p>
+    {{/mostrarIdade}}
+
+    {{^mostrarIdade}}
+    <p>Você tem {{idade}} anos, menor de idade</p>
+    {{/mostrarIdade}}
+
+    {{#produtos}}
+    
+        <ul>
+            <li>{{titulo}} = R$ {{preco}}</li>
+        </ul>
+    
+    {{/produtos}}
+
+    
+        {{#frases }}
+        <li> {{.}} </li>
+        {{/frases}}
+
+        {{^frases}}
+        ZERO FRASES
+        {{/frases}}
+    
+    
+    
+
+</section>
+</body>
+{{>partials/footer}}

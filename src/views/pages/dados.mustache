@@ -1,0 +1,36 @@
+{{>partials/header}}
+
+
+<h2>Qual seu nome? </h2>
+<form method="GET">
+    <input type="text" name="nome"  placeholder= "Digite seu nome">
+    <input type="Number" name="idade"  placeholder= "Digite sua idade">
+    <input type="text" name="telefone"  placeholder= "Digite seu telefone">
+    <input type="text" name="rua"  placeholder= "Digite seu endereço">
+
+    <input type="submit" value="Enviar">
+</form>
+
+{{#nome}}
+Opa {{nome}}, tudo bem? 
+{{/nome}}
+{{#idade}}
+Você tem {{idade}} anos
+{{/idade}}
+{{#telefone}}
+seu telefone é {{telefone}}
+{{/telefone}}
+{{#rua}}
+e seu endereco é {{rua}}
+{{/rua}}
+
+
+
+
+
+
+
+
+
+
+{{>partials/footer}}

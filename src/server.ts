@@ -7,6 +7,9 @@ import mainRoutes from './routes/index'
 
 //importando template engine (para usar HTML)
 import mustache from 'mustache-express'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const server = express()
 
@@ -21,6 +24,8 @@ server.engine('mustache', mustache())
 //configuração pasta public
 server.use(express.static(path.join(__dirname,'../public')))
 
+server.use(express.urlencoded({extended: true}))
+
 //inserindo a rota no servidor
 
 server.use(mainRoutes)
@@ -30,4 +35,4 @@ server.use(mainRoutes)
 server.use((req: Request, res: Response)=>{
     res.status(404).send("PÁGINA SUMIU")
 })
-server.listen(3000)
+server.listen(process.env.PORT)

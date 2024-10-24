@@ -1,51 +1,55 @@
-import{Router, Request, Response, RequestHandler} from 'express'
+import { Console } from 'console'
+import { Router, Request, Response, RequestHandler } from 'express'
+import * as HomeController from '../controllers/homeController'
+import * as InfoController from '../controllers/infoController'
+import * as UserController from '../controllers/userController'
 
 const router = Router()
 
-router.get('/', (req: Request,res: Response) =>{
-    let user ={
-        nome: 'Danilo',
-        idade: 20
-    } 
+router.get('/', HomeController.home)
 
-    res.render('home', {
-        user:
-    })
-    
-    
-})
 
 
 
 //Quando usamos middleware, colocamos next
-const interferir:RequestHandler = (req,res,next)=>{
+/*const interferir: RequestHandler = (req, res, next) => {
     let logged = false
-    if(logged){
+    if (logged) {
         next()
-    }else{
+    } else {
         res.status(404).send("Login não permitido")
     }
-}
+}*/
 
-router.get('/contato',/*, interferir, */(req: Request,res: Response) =>{
-    //console.log("EXECUTOU A PAG DE CONTATOS")
-    res.render('contato')
-})
+router.get('/contato', InfoController.contato)
 
-router.get('/sobre', (req: Request,res: Response) =>{
-    res.render('sobre')
-})
+router.get('/sobre', InfoController.sobre)
+
+router.get('/nome', UserController.nome)
+
+router.get('/dados', UserController.dados)
+
+router.get('/idade', UserController.idade)
+
+router.get('/email', UserController.email)
+
+router.post('/email-resultado', UserController.resultado)
+
+router.post('/idade-resultado', UserController.resultado2)
+
+
+
 
 //ROTA DINÂMICA
-router.get("/noticia/:slug", (req: Request,res: Response) =>{
+/*router.get("/noticia/:slug", (req: Request, res: Response) => {
     let slug: string = req.params.slug
     res.send(`NOTÍCIA: ${slug}`)
 })
 
-router.get("/voo/:origem-:destino", (req: Request,res: Response) =>{
-    let{origem, destino} = req.params
+router.get("/voo/:origem-:destino", (req: Request, res: Response) => {
+    let { origem, destino } = req.params
     res.send(`Procurando voos de ${origem} até ${destino}`)
-})
+})*/
 
 export default router
 
